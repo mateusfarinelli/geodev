@@ -5,7 +5,7 @@ const parseStringAsArray = require('../utils/parseStringasArray')
 // Metodos de controller: index, show, store, update, destroy
 
 module.exports = {
-  async index (request, response){
+  async index (request, response) {
     const devs = await Dev.find()
 
     return response.json(devs)
@@ -41,8 +41,10 @@ module.exports = {
     return response.json(dev)
   },
 
-  async update() {
-    //atualizar informações do dev
+  async update(request, response) {
+      const devs = await Dev.find()
+  
+      return response.json(devs)
   },
 
   async destroy() {

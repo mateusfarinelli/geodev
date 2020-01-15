@@ -1,0 +1,86 @@
+Componente: é uma função/classe que retorna algum conteudo seja HTML, CSS ou JS. 
+
+Quando repetimos trechos de código muitas vezes, ou quando podemos isolar pedaços da aplicação dentro de algo que não interfira nas funcionalidades do restante da aplicação, podemos criar um componente. 
+
+Lembrando que quando criamos um componente sempre devemos utilizar a primeira letra maiscula e depois podemos importar e utiliza-lo como uma "tag" html dentro da nossa aplicação.
+
+Por exemplo:
+
+import React from 'react
+
+function Header () {
+
+  return <h1> Header </h1>
+}
+
+exporte default Header
+
+Por padrão, o React insentiva que não exista mais de um componente por arquivo.
+
+------------------------------------------------------
+------------------------------------------------------
+Propriedade: sempre que passamos um atributo (como era chamado no HTML) a um componente chamamos isso de propriedade. Por exemplo:
+
+<Header title="Dashboard"/>
+
+Para ter acesso a proprieade dentro do componente, é preciso declarar o parametro "props" na chamada do componente e utilizar a sintaxe {props.propriedade} incluindo a chaves, e assim conseguidos utilizar um conteudo JS.
+
+Vejamos o exemplo utilizando o header header:
+
+import React from 'react
+
+function Header(props) {
+
+  return <h1>{props.title</h1>
+}
+
+exporte default Header
+
+Anteriormente tinhamos o texto "Header" que era exibido, agora utilizando a propriedade title, a exibição passa ser o valor dessa propriedade que no caso é "Dashboard"
+
+O React não permite a renderização de mais de um componente sem que os mesmos estejam envoltos por um container, podendo ser um tag html ou ainda uma tag vazia. Utilizar essa tag vazia é uma tecnica chamada fragment, como no exmeplo a seguir:
+
+function App() {
+  return(
+    <>
+      <Header title="Titulo 1" />
+      <Header title="Titulo 2" />
+      <Header title="Titulo 3" />
+    </>
+  )
+}
+
+export default App
+
+Portanto podemos definir que propriedade são informações que o componente PAI (se usarmos o exemplo do App logo acima, o componente pai é o App e o componente filho é o Header) passa para os componentes filhos
+
+Além de string como no exemplo ainda conseguimos passar para os valores das propriedades, variaveis, funções e etc utilizando javascript ({})
+
+------------------------------------------------------
+------------------------------------------------------
+Estado: São informações mantidas pelo componente.
+
+É muito bom lembrar que o React aposta no conceito de imutabilidade, então ele não fica monitorando mudanças de variaveis, é preciso trabalhar com a função useState do react, que deve ser importada.
+
+Vamos ao código exmeplo:
+
+import React, { useState } from 'react'
+
+function App() {
+ const [counter, setCounter] = useState(0) // desestruturação do return da 
+					   // função useState() que retorna o valor da variavel, e uma função para modifica-la.
+ function incrementCounter() {
+  setCounter(counter + 1)
+ }
+
+ return (
+  <>
+    <h1>Contador: {counter}</h1>
+    <button onclick={incrementCounter}>Incrementar</button>
+  </>
+ )
+}
+
+Veja que nesse exemplo, uma função propria de um componente deve ser declarada dentro do componente e antes do returne.
+
+E como ja vimos o conceito de imutabilidade é muito forte no React e então não é possivel apenas declarar uma variavel counter e modificar seu valor, pois o react não iria monitora-la, para isso é preciso utilizar a função useState, assim ao fazer a modificação o react passa a monitora-la como estado.
