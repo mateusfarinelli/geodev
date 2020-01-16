@@ -1,14 +1,14 @@
 main {
   flex: 1;
+  width: 100%;
 }
 
 main ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   list-style: none;
 }
-
 li.dev-item {
   background: #FFF;
   box-shadow: 0 0 14px 0 rba(0, 0, 0, 0.02);
@@ -61,7 +61,7 @@ li.dev-item a:hover {
   color: #5a2ea6;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 639px) {
   main ul{
   grid-template-columns: 1fr;
   }

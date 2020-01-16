@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require ('mongoose')
 const routes = require('./routes')
+const cors = require('cors')
 
 const app = express()
 
@@ -8,7 +9,7 @@ mongoose.connect('mongodb+srv://root:geo2020dev@geodev-m3n2b.mongodb.net/test?re
   useNewUrlParser: true,
   useUnifiedTopology: true  
 })
-
+app.use(cors('origin: http://localhost:3000'))
 app.use(express.json()) // Express passa a entender requisições com formato json.
 app.use(routes)
 

@@ -1,54 +1,131 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from './services/api'
 
 import './global.css'
 import './App.css'
 import './Sidebar.css'
 import './Main.css'
 
+
 function App() {
+  const [devs, setDevs] = useState([])
+
+  const [github_username, setGithubUserName] = useState('');
+  const [techs, setTechs] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs')
+
+      setDevs(response.data)
+    }
+    loadDevs()
+  }, [])
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords
+
+        setLatitude(latitude)
+        setLongitude(longitude)
+      },
+      (err) => {
+        console.log(err)
+      },
+      {
+        timeout: 30000,
+      }
+    )
+  }, [])
+
+  async function handleAddDev(e) {
+    e.preventDefault()
+
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude
+    })
+    setGithubUserName('');
+    setTechs('');
+
+    setDevs([...devs, response.data])
+  }
+
   return (
     <div id="app">
       <aside>
         <strong>Cadastrar</strong>
-        <form>
-          <div class="input-block">
+        <form onSubmit={handleAddDev}>
+          <div className="input-block">
             <label htmlFor="github_username">Usuario do Github</label>
-            <input name="github_username" id="username_github" required/>
+            <input 
+            name="github_username" 
+            id="username_github" 
+            required
+            vaule={github_username}
+            onChange={e =>setGithubUserName(e.target.value)}
+            />
           </div>
 
-          <div class="input-block">
+          <div className="input-block">
             <label htmlFor="techs">Tecnologias</label>
-            <input name="techs" id="techs" required/>
+            <input 
+            name="techs" 
+            id="techs" 
+            required             
+            vaule={techs}
+            onChange={e =>setTechs(e.target.value)}
+            />
           </div>
 
-          <div class="input-group">
-            <div class="input-block">
+          <div className="input-group">
+            <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input name="latitude" id="latitude" required/>
+              <input 
+              name="latitude" 
+              id="latitude" 
+              required
+              value={latitude}
+              onChange={e =>setLatitude(e.target.value)}
+              />
             </div>
 
-            <div class="input-block">
+            <div className="input-block">
               <label htmlFor="logintude">Logintude</label>
-              <input name="logintude" id="logintude" required/>
+              <input 
+              name="logintude" 
+              id="logintude" 
+              required
+              value={longitude} 
+              onChange={e =>setLatitude(e.target.value)}
+              />
             </div>         
           </div>
 
           <button type="submit">Salvar</button>
         </form>
       </aside>
+
       <main>
         <ul>
-          <li className="dev-item">
+          {devs.map(dev => (
+          <li key={dev._id} className="dev-item">
             <header>
-              <img src="https://avatars2.githubusercontent.com/u/45761238?s=460&v=4" alt="Mateus Farinelli"/>
+              <img src={dev.avatar_url} alt={dev.name}/>
               <div className="user-info">
-                <strong>Mateus Farinelli</strong>
-                <span>Node.js, React Native, ReactJs</span>
+                <strong>{dev.name}</strong>
+                <span>{dev.techs.join(', ')}</span>
               </div>
             </header>
-            <p>Um cara muito engraçado</p>
-            <a href="https://github.com/mateusfarinelli">Acessar Perfil no Github</a>
+            <p>{dev.bio}</p>
+            <a href={`https://github.com/${dev.github_username}`}>Acessar Perfil no Github</a>
           </li>
+          ))}          
         </ul>
       </main>
     </div>
