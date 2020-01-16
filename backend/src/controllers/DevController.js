@@ -42,9 +42,16 @@ module.exports = {
   },
 
   async update(request, response) {
-      const devs = await Dev.find()
-  
-      return response.json(devs)
+
+    //Mandar um PV para o Vini me explicar como ele fez o update
+    //https://github.com/vinifraga/omnistack10
+
+    const { id } = request.params;
+    const data = request.body;
+    
+
+    console.log(id)
+
   },
 
   async destroy() {

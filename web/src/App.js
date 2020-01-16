@@ -119,6 +119,7 @@ function App() {
               <img src={dev.avatar_url} alt={dev.name}/>
               <div className="user-info">
                 <strong>{dev.name}</strong>
+                <img className="profile-edit" src="https://img.icons8.com/material-sharp/24/000000/edit-user-male.png" alt="Edit Profile"/>
                 <span>{dev.techs.join(', ')}</span>
               </div>
             </header>

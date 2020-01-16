@@ -14,6 +14,7 @@ li.dev-item {
   box-shadow: 0 0 14px 0 rba(0, 0, 0, 0.02);
   border-radius: 2px;
   padding: 20px;
+  position: relative;
 }
 
 li.dev-item header {
@@ -26,6 +27,14 @@ li.dev-item header img {
   width: 54px;
   height: 54px;
   border-radius: 50%;
+}
+
+li.dev-item header img.profile-edit {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 5px;
 }
 
 li.dev-item header .user-info {
@@ -61,7 +70,7 @@ li.dev-item a:hover {
   color: #5a2ea6;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 1093px) {
   main ul{
   grid-template-columns: 1fr;
   }
