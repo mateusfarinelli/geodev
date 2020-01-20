@@ -1,6 +1,8 @@
 li.dev-item {
   background: #FFF;
   box-shadow: 0 0 14px 0 rba(0, 0, 0, 0.02);
+  -moz-box-shadow: 0 0 14px 0 rba(0, 0, 0, 0.02);
+  -webkit-box-shadow:0 0 14px 0 rba(0, 0, 0, 0.02);
   border-radius: 2px;
   padding: 20px;
 }
