@@ -39,15 +39,15 @@ module.exports = {
       // console.log(name, avatar_url, bio, github_username) 
     }
     return response.json(dev)
-  },
-
-  async update(request, response) {
-      const devs = await Dev.find()
-  
-      return response.json(devs)
-  },
-
-  async destroy() {
-    //excluir um dev da aplicação
   }
 }
+//   async update(request, response) {
+//       const devs = await Dev.find()
+  
+//       return response.json(devs)
+//   },
+
+//   async destroy() {
+//     //excluir um dev da aplicação
+//   }
+//
