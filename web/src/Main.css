@@ -9,6 +9,7 @@ main ul {
   gap: 20px;
   list-style: none;
 }
+<<<<<<< HEAD
 li.dev-item {
   background: #FFF;
   box-shadow: 0 0 14px 0 rba(0, 0, 0, 0.02);
@@ -40,6 +41,8 @@ li.dev-item header img.profile-edit {
 li.dev-item header .user-info {
   margin-left: 10px;
 }
+=======
+>>>>>>> cd82bff0d21ecd229a1ebb3b9bd08b94a50ec7f9
 
 .user-info strong {
   display: block;
@@ -60,6 +63,7 @@ li.dev-item header .user-info {
   margin: 10px 0px;
 }
 
+<<<<<<< HEAD
 li.dev-item a {
   color: #8e4dff;
   font-size: 14px;
@@ -71,6 +75,9 @@ li.dev-item a:hover {
 }
 
 @media (max-width: 1093px) {
+=======
+@media (max-width: 639px) {
+>>>>>>> cd82bff0d21ecd229a1ebb3b9bd08b94a50ec7f9
   main ul{
   grid-template-columns: 1fr;
   }

@@ -39,6 +39,7 @@ module.exports = {
       // console.log(name, avatar_url, bio, github_username) 
     }
     return response.json(dev)
+<<<<<<< HEAD
   },
 
   async update(request, response) {
@@ -53,8 +54,17 @@ module.exports = {
     console.log(id)
 
   },
-
-  async destroy() {
-    //excluir um dev da aplicação
+=======
   }
 }
+//   async update(request, response) {
+//       const devs = await Dev.find()
+  
+//       return response.json(devs)
+//   },
+>>>>>>> cd82bff0d21ecd229a1ebb3b9bd08b94a50ec7f9
+
+//   async destroy() {
+//     //excluir um dev da aplicação
+//   }
+//
